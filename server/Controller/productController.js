@@ -94,16 +94,16 @@ const addProduct = async (req, res) => {
 //     });
 // };
 
-// delete product
-// const deleteProduct = async (req, res) => {
-//   Product.findByIdAndDelete(req.params.id, (err) => {
-//     if (!err) {
-//       res.status(200).json({ message: `Product deleted successfully` });
-//     } else {
-//       res.status(400).json({ message: `Delete failed` });
-//     }
-//   });
-// };
+delete product
+const deleteProduct = async (req, res) => {
+  Product.findByIdAndDelete(req.params.id, (err) => {
+    if (!err) {
+      res.status(200).json({ message: `Product deleted successfully` });
+    } else {
+      res.status(400).json({ message: `Delete failed` });
+    }
+  });
+};
 
 module.exports = {
   addProduct,
@@ -112,5 +112,5 @@ module.exports = {
   getProductById,
   // getProductImage,
   // updateProduct,
-  // deleteProduct,
+  deleteProduct,
 };

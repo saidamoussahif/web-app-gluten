@@ -78,7 +78,7 @@ const Login = asyncHandler(async (req, res) => {
 
 // Create token
 const userToken = (id) => {
-  return jwt.sign({ id }, process.env.TOKEN, {
+  return jwt.sign({ id }, process.env.TOKEN, {  
     expiresIn: "2h",
   });
 };
