@@ -1,5 +1,5 @@
 import React from "react";
-import NavBar from "../components/Client/NavBar";
+import NavBar from "../components/Client/nav";
 
 
 

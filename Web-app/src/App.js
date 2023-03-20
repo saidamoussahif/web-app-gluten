@@ -9,12 +9,21 @@ import Products from "./Pages/Products";
 import Blog from "./Pages/Blog";
 import OurStory from "./Pages/OurStory";
 import Orders from "./Pages/admin/Orders";
+import NavBar from "./components/admin/Header";
+import Header from "./components/Client/NavBar";
         
 
 function App() {
   
   return (
     <>
+    {
+        localStorage.getItem('isAdmin') === 'true' ? (
+          <NavBar />
+        ) : (
+          <Header />
+        )
+      }
       <Routes>      
         <Route path="/" element={<Home />} />
         <Route className="App" path="/dashboard" element={<Dashboard />} />

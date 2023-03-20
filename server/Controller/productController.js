@@ -58,41 +58,41 @@ const addProduct = async (req, res) => {
 // };
 
 //  Update product
-// const updateProduct = async (req, res) => {
-//   const { category, productName, quantity, price, description } = req.body;
-//   const { file } = req;
+const updateProduct = async (req, res) => {
+  const { category, productName, quantity, price, description } = req.body;
+  const { file } = req;
 
-//   !category || !productName || !quantity || !price || !description
-//     ? res.status(400).json({ message: `All fields are required` })
-//     : null;
+  !category || !productName || !quantity || !price || !description
+    ? res.status(400).json({ message: `All fields are required` })
+    : null;
 
-//   const imageName = `${Date.now()}-${file.originalname}`;
-//   await sharp(req.file.buffer)
-//     .resize({ width: 250, height: 250 })
-//     .png()
-//     .toFile(`./uploads/${imageName}`)
-//     .then(() => {
-//       Product.findByIdAndUpdate(
-//         req.params.id,
-//         {
-//           category: req.body.category.name,
-//           productName: req.body.productName,
-//           quantity: req.body.quantity,
-//           image: imageName,
-//           price: req.body.price,
-//           description: req.body.description,
-//         },
-//         { new: true },
-//         (err) => {
-//           if (!err) {
-//             res.status(200).json();
-//           } else {
-//             res.status(400).json({ message: `Update failed` });
-//           }
-//         }
-//       );
-//     });
-// };
+  const imageName = `${Date.now()}-${file.originalname}`;
+  await sharp(req.file.buffer)
+    .resize({ width: 250, height: 250 })
+    .png()
+    .toFile(`./uploads/${imageName}`)
+    .then(() => {
+      Product.findByIdAndUpdate(
+        req.params.id,
+        {
+          category: req.body.category.name,
+          productName: req.body.productName,
+          quantity: req.body.quantity,
+          image: imageName,
+          price: req.body.price,
+          description: req.body.description,
+        },
+        { new: true },
+        (err) => {
+          if (!err) {
+            res.status(200).json();
+          } else {
+            res.status(400).json({ message: `Update failed` });
+          }
+        }
+      );
+    });
+};
 
 delete product
 const deleteProduct = async (req, res) => {
@@ -111,6 +111,6 @@ module.exports = {
   getProductByCategory,
   getProductById,
   // getProductImage,
-  // updateProduct,
+  updateProduct,
   deleteProduct,
 };

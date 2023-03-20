@@ -11,9 +11,9 @@ import Colors from "../Constants/Colors";
 import Button from "../Components/Button";
 import FontSize from "../Constants/FontSize";
 import Fonts from "../Constants/Fonts";
-import { useEffect } from "react";
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import { useNavigation } from "@react-navigation/native";
+// import { useEffect } from "react";
+// import AsyncStorage from "@react-native-async-storage/async-storage";
+// import { useNavigation } from "@react-navigation/native";
 
 const { height } = Dimensions.get("window");
 

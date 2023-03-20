@@ -1,5 +1,5 @@
 import React from "react";
-import NavBar from "../components/Client/NavBar";
+import Header from "../components/Client/";
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -37,11 +37,11 @@ const Register = () => {
 
   return (
     <>
-      <NavBar />
+       <Header/>
       <div className="h-full w-1/3 absolute top-1/3 left-1/3">
         <div className="relative py-3 max-w-3xl">
           <div className="absolute inset-0 bg-gradient-to-r from-[#739044] to-[#AACB73] shadow-lg transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 sm:rounded-3xl"></div>
-          <div className="relative px-4 py-10 bg-white shadow-lg sm:rounded-3xl sm:p-20">
+          <div className="relative px-4 py-8 bg-white shadow-lg sm:rounded-3xl sm:p-20">
             <div>
               <div>
                 <h1 className="text-2xl font-semibold">Create your account</h1>
@@ -82,10 +82,10 @@ const Register = () => {
                     </label>
                   </div>
                   <div className="relative top-8">
-                    <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+                    <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
-                        class="h-5 w-5 text-gray-400"
+                        className="h-5 w-5 text-gray-400"
                         fill="none"
                         strokeLinecap="round"
                         strokeLinejoin="round"
@@ -123,22 +123,22 @@ const Register = () => {
                     </label>
                   </div>
                   <div className="relative top-8">
-                    <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+                    <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
                       <svg
-                        class="h-5 w-5 text-gray-400"
+                        className="h-5 w-5 text-gray-400"
                         fill="none"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
                         xmlns="http://www.w3.org/2000/svg"
                       >
                         <path
                           d="M3 8L10.8906 13.2604C11.5624 13.7083 12.4376 13.7083 13.1094 13.2604L21 8M5 19H19C20.1046 19 21 18.1046 21 17V7C21 5.89543 20.1046 5 19 5H5C3.89543 5 3 5.89543 3 7V17C3 18.1046 3.89543 19 5 19Z"
-                          stroke-width="2"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
                         />
                       </svg>{" "}
                     </div>
@@ -162,13 +162,13 @@ const Register = () => {
                     </label>
                   </div>
                   <div className="relative top-8">
-                    <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+                    <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
                       <svg
-                        class="h-5 w-5 text-gray-400"
+                        className="h-5 w-5 text-gray-400"
                         fill="none"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
                       >
