@@ -1,5 +1,4 @@
 import React from "react";
-import Header from "../components/Client/";
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -37,7 +36,6 @@ const Register = () => {
 
   return (
     <>
-       <Header/>
       <div className="h-full w-1/3 absolute top-1/3 left-1/3">
         <div className="relative py-3 max-w-3xl">
           <div className="absolute inset-0 bg-gradient-to-r from-[#739044] to-[#AACB73] shadow-lg transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 sm:rounded-3xl"></div>

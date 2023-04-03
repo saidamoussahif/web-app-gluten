@@ -13,6 +13,8 @@ import axios from "axios";
 import { useState } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useNavigation } from "@react-navigation/native";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+
 
 function RegisterScreen(props) {
   const [fullname, setFullname] = useState("");

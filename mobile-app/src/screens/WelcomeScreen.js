@@ -97,7 +97,7 @@ export default WelcomeScreen = (props) => {
           <Button
             btnLabel="Get Started"
             textColor={Colors.light}
-            Press={() => props.navigation.navigate("LoginScreen")}
+            Press={() => props.navigation.navigate("Login")}
             style={{
               fontSize: FontSize.medium,
               textAlign: "center",

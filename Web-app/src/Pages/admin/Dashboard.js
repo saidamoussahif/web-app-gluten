@@ -1,92 +1,149 @@
 import React from "react";
-import Header from "../../components/admin/Header";
+import AdminHead from "../../components/admin/AdminHead";
 import axios from "axios";
 import { useState, useEffect } from "react";
-// import { useNavigate } from "react-router";
 
-const Dashboard = () => {
+function Dashboard() {
+  const [showModalAdd, setShowModalAdd] = useState(false);
   const [showModalEdit, setShowModalEdit] = useState(false);
   const [productsList, setProducts] = useState([]);
-
-  // const navigate = useNavigate();
-  // const token = localStorage.getItem("token");
-  // const isset = (token) => {
-  //   if (!token) {
-  //     navigate("/login");
-  //   }
-  // };
-
-  // delete product
-
-  // const deleteProduct = async (id) => {
-  //   const response = await axios.delete(
-  //     `http://192.168.9.33:9090/api/products/delete/${id}`
-  //   );
-  //   console.log(response);
-  //   const newProducts = productsList.filter((product) => product.id !== id);
-  //   setProducts(newProducts);
-  // };
-
-
+// get categories
+const [categories, setCategory] = useState([]);
+  const getCategories = async () => {
+    const response = await fetch(
+      // "http://192.168.9.33:9090/api/categories/getAll"
+      "http://localhost:9090/api/categories/getAll"
+    );
+    const data = await response.json();
+    setCategory(data);
+  };
   useEffect(() => {
     const getProduct = async () => {
       const response = await axios.get(
-        "http://192.168.9.33:9090/api/products/getAll"
+        "http://localhost:9090/api/products/getAll"
       );
       setProducts(response.data);
     };
     getProduct();
     // isset(token);
+    getCategories();
   }, []);
 
+  // delete product
+  const deleteProduct = async (id) => {
+    const response = await axios.delete(
+      `http://localhost:9090/api/products/${id}`
+    );
+    console.log(response);
+    const newProductList = productsList.filter((product) => {
+      return product._id !== id;
+    });
+    setProducts(newProductList);
+  };
+
+  // add product
+  // const addProduct = async (id) => {
+  //   const response = await axios.post(
+  //     `http://localhost:9090/api/products/add`
+  //   );
+  //   console.log(response);
+  //   const newProductList = productsList.filter((product) =>
+  //   {
+  //     return product._id !== id;
+  //   });
+  //   setProducts(newProductList);
+  // };
+
+
+  // update product
+  const updateProduct = async (id) => {
+    const response = await axios.put(
+      `http://localhost:9090/api/products/${id}`
+    );
+    console.log(response);
+    const newProductList = productsList.filter((product) => {
+      return product._id !== id;
+    });
+    setProducts(newProductList);
+  };
 
 
   return (
-    <div>
-      <Header />
-      <section className="dark:bg-gray-900 absolute top-1/4">
-        <div className="container px-6 py-10 mx-auto">
-          <div className="grid grid-cols-2 gap-8 mt-8 md:mt-16 md:grid-cols-2">
-            {productsList.map((product) => (
-              <div className="lg:flex border border-[#b9d38f] rounded-md p-10 bg-[#fdfff8]">
-                <img
-                  className="object-cover w-full h-56 rounded-lg lg:w-64"
-                  src="https://images.unsplash.com/photo-1515378960530-7c0da6231fb1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
-                  alt=""
-                />
+    <>
+      <AdminHead />
+      {/* button add product */}
+      <div className="absolute top-[27%] left-1/4 w-1/2 rounded-lg m-5">
+        <button
+          onClick={() => setShowModalAdd(true)}
+          className="flex items-center justify-center w-40 px-4 py-2 text-sm font-medium text-white bg-[#AACB73] rounded-md"
+        >
+          + Add Product
+        </button>
+      </div>
 
-                <div className="flex flex-col justify-between py-6 lg:mx-6">
-                  <h1 className="text-xl font-semibold text-gray-800 hover:underline dark:text-white ">
-                    {product.name}
-                  </h1>
-                  <span>
-                    <span className="text-gray-600 dark:text-gray-400">
-                      Quantity:{" "}
-                    </span>
-                    {product.quantity}
-                  </span>
-                  <span>
-                    <span className="text-gray-600 dark:text-gray-400">
-                      Price:{" "}
-                    </span>
-                    {product.price}
-                  </span>
-                  <span>
-                    <span className="text-gray-600 dark:text-gray-400">
-                      Category:{" "}
-                    </span>
+      <div className=" absolute top-1/3 left-1/4 w-1/2 rounded-lg border border-gray-200 shadow-md m-5">
+        <table className="w-full bg-white text-left text-sm text-gray-500">
+          <thead className="bg-gray-50">
+            <tr>
+              <th scope="col" className="px-10 py-8 font-medium text-gray-900">
+                IMAGE
+              </th>
+              <th scope="col" className="px-10 py-8 font-medium text-gray-900">
+                CATEGORY
+              </th>
+              <th scope="col" className="px-10 py-8 font-medium text-gray-900">
+                NAME
+              </th>
+              <th scope="col" className="px-10 py-8 font-medium text-gray-900">
+                QUANTITY
+              </th>
+              <th scope="col" className="px-10 py-8 font-medium text-gray-900">
+                PRICE
+              </th>
+              <th scope="col" className="px-10 py-8 font-medium text-gray-900">
+                DESCRIPTION
+              </th>
+              <th scope="col" className="px-10 py-8 font-medium text-gray-900">
+                ACTIONS
+              </th>
+            </tr>
+          </thead>
+          <tbody className="divide-y divide-gray-100 border-t border-gray-100">
+            {productsList.map((product) => (
+              <tr className="hover:bg-gray-50" key={product._id}>
+                <th className="flex gap-3 px-6 py-4 font-normal text-gray-900">
+                  <div className="relative h-56 w-56">
+                    <img
+                      className="roundeded-md object-cover object-center"
+                      src={`http://localhost:9090/img/${product.image}`}
+                      alt=""
+                    />
+                  </div>
+                </th>
+                <td className="px-6 py-4">
+                  <span className="inline-flex items-center gap-1 rounded-full px-2 py-1 text-xs font-semibold text-center">
                     {product.category}
                   </span>
-                  <span>
-                    <span className="text-gray-600 dark:text-gray-400">
-                      Description:{" "}
-                    </span>
+                </td>
+                <td className="px-6 py-4 text-center">{product.productName}</td>
+                <td className="px-6 py-4 text-center">{product.quantity}</td>
+                <td className="px-6 py-4 text-center">
+                  <span className="inline-flex items-center gap-4 rounded-full px-2 py-1 text-xs font-semibold">
+                    {product.price}
+                  </span>
+                </td>
+                <td className="px-6 py-4">
+                  <span className="inline-flex items-center gap-4 rounded-full px-2 py-1 text-xs font-semibold text-center">
                     {product.description}
                   </span>
-                  <div className="flex items-center justify-start gap-6 mt-6">
+                </td>
+                <td className="px-6 py-4">
+                  <div className="flex justify-end gap-4">
                     <button
-                      x-data="{ tooltip: 'Delete' }"
-                      className="text-red-700"
+                      onClick={() => {
+                        deleteProduct(product._id);
+                      }}
+                      className="text-red-500 hover:text-red-600"
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -105,8 +162,8 @@ const Dashboard = () => {
                       </svg>
                     </button>
                     <button
-                      className="text-blue-700"
                       x-data="{ tooltip: 'Edite' }"
+                      className="text-blue-500 hover:text-blue-600"
                       onClick={() => setShowModalEdit(true)}
                     >
                       <svg
@@ -126,12 +183,12 @@ const Dashboard = () => {
                       </svg>
                     </button>
                   </div>
-                </div>
-              </div>
+                </td>
+              </tr>
             ))}
-          </div>
-        </div>
-      </section>
+          </tbody>
+        </table>
+      </div>
 
       {showModalEdit ? (
         <>
@@ -153,6 +210,7 @@ const Dashboard = () => {
                 </div>
                 <div className="relative p-6 flex-auto">
                   <form
+                    onSubmit={updateProduct}
                     className="rounded px-8 pt-6 pb-8
                     w-full"
                   >
@@ -164,16 +222,21 @@ const Dashboard = () => {
                       required
                       className="shadow appearance-none border rounded w-full p-3 px-1 block text-[#060047] text-base mb-1"
                     >
-                      <option selected>choose category</option>
-                      <option>category 1</option>
-                      <option>category 2</option>
-                      <option>category 3</option>
+                      <option selected>Categories</option>
+                      {
+                        categories.map((category) => (
+                          <option value={category._id}>{category.name}</option>
+                        ))
+                      }
                     </select>
                     <label className="block text-[#060047] text-sm font-bold mb-1">
                       Name of product
                     </label>
                     <input
                       type="text"
+                      onChange={
+                        (e) => setProducts({ ...productsList, name: e.target.value })
+                      }
                       required
                       className="shadow appearance-none border rounded w-full py-2 px-1 text-[#060047]"
                     />
@@ -182,6 +245,9 @@ const Dashboard = () => {
                     </label>
                     <input
                       type="number"
+                      onChange={
+                        (e) => setProducts({ ...productsList, quantity: e.target.value })
+                      }
                       required
                       className="shadow appearance-none border rounded w-full py-2 px-1 text-[#060047]"
                     />
@@ -190,6 +256,9 @@ const Dashboard = () => {
                     </label>
                     <input
                       type="file"
+                      onChange={
+                        (e) => setProducts({ ...productsList, image: e.target.files[0] })
+                      }
                       required
                       className="shadow appearance-none border rounded w-full py-2 px-1 text-[#060047]"
                     />
@@ -198,10 +267,12 @@ const Dashboard = () => {
                     </label>
                     <textarea
                       type="text"
+                      onChange={
+                        (e) => setProducts({ ...productsList, description: e.target.value })
+                      }
                       required
                       className="shadow appearance-none border rounded w-full py-2 px-1 text-[#060047]"
                     />
-
                     <div className="flex items-center justify-end p-6 border-t border-solid border-blueGray-200 rounded-b">
                       <button
                         className="text-white font-bold bg-[#7f9b52] uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1"
@@ -217,8 +288,105 @@ const Dashboard = () => {
           </div>
         </>
       ) : null}
-    </div>
+
+      {showModalAdd ? (
+        <>
+         <div id="popup" className="z-50 fixed w-full flex justify-center inset-0">
+        <div className="w-full h-full bg-gray-50 z-0 absolute inset-0" />
+        <div className="mx-auto container">
+          <div className="flex items-center justify-center h-full w-full">
+            <div className="bg-white rounded-md shadow fixed overflow-y-auto sm:h-auto w-10/12 md:w-8/12 lg:w-1/2 2xl:w-2/5">
+              <div className="bg-indigo-100 rounded-tl-md rounded-tr-md px-4 md:px-8 md:py-4 py-7 flex items-center justify-center">
+                <p className="text-xl font-semibold text-indigo-500">
+                  Create your account
+                </p>
+                <button
+                    className="bg-transparent border-0 text-[#060047] float-right"
+                    onClick={() => setShowModalAdd(false)}
+                  >
+                    <span className="text-[#7f9b52] font-bold opacity-7 h-6 w-6 text-2xl block">
+                      x
+                    </span>
+                  </button>
+              </div>
+              <div className="px-4 md:px-10 pt-2 md:pt-8 md:pb-4 pb-4">
+                <div className="flex items-center justify-center">
+                  <div className="p-16 rounded-md flex items-center justify-center">
+                    {/* <img src={icon} alt="user" width={40} height={40} /> */}
+                  </div>
+                </div>
+                <form className="mt-8">
+                  <div className="flex items-center space-x-9">
+                    <input
+                      placeholder="Full Name"
+                      className="w-1/2 focus:outline-none placeholder-gray-500 py-3 px-3 text-sm leading-none text-gray-800 bg-white border rounded border-gray-200"
+                      type="text"
+                      required
+                    />
+                    <input
+                      placeholder="Phone"
+                      type="number"
+                      min={0}
+                      className="w-1/2 focus:outline-none placeholder-gray-500 py-3 px-3 text-sm leading-none text-gray-800 bg-white border rounded border-gray-200"
+                      required
+                    />
+                  </div>
+                  <div className="flex items-center space-x-9 mt-8">
+                    <input
+                      placeholder="CIN"
+                      className="w-1/2 focus:outline-none placeholder-gray-500 py-3 px-3 text-sm leading-none text-gray-800 bg-white border rounded border-gray-200"
+                      type="text"
+                      required
+                    />
+                    <input
+                      placeholder="Address"
+                      type="text"
+                      className="w-1/2 focus:outline-none placeholder-gray-500 py-3 px-3 text-sm leading-none text-gray-800 bg-white border rounded border-gray-200"
+                      required
+                    />
+                  </div>
+                  <div className="flex items-center space-x-9 mt-8">
+                    <input
+                      placeholder="Email"
+                      type="email"
+                      required
+                      className="w-1/2 focus:outline-none placeholder-gray-500 py-3 px-3 text-sm leading-none text-gray-800 bg-white border rounded border-gray-200"
+                    />
+                    <input
+                      placeholder="Password"
+                      type="password"
+                      required
+                      className="w-1/2 focus:outline-none placeholder-gray-500 py-3 px-3 text-sm leading-none text-gray-800 bg-white border rounded border-gray-200"
+                    />
+                  </div>
+                </form>
+                <div className="flex justify-between mt-9">
+                  <a
+                    href="/login"
+                    className="flex items-start justify-start py-3 text-indigo-600 underline hover:bg-opacity-80  text-sm"
+                  >
+                    Already have an account!
+                  </a>
+                  <button
+                    type="submit"
+                    className="flex items-center justify-center px-6 py-3 bg-indigo-600 hover:bg-opacity-80 shadow rounded text-sm text-white"
+                  >
+                    Submit
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+          </>
+      ) : null}
+
+
+
+
+    </>
   );
-};
+}
 
 export default Dashboard;

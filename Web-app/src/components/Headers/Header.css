@@ -1,0 +1,169 @@
+/*------head-----------*/
+.head {
+	background-color: #AACB73;
+	padding: 10px 0;
+	color: #fff;
+  }
+  .head i {
+	margin-right: 10px;
+  }
+  .head label {
+	margin-right: 30px;
+	font-size: 13px;
+  }
+  /*------head-----------*/
+  /*------logo---------- */
+  .logo img {
+	width: 120px;
+	height: 120px;
+  }
+  .width {
+	width: 90px;
+	height: 90px;
+	border-radius: 20px;
+  }
+  .navigation{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+  }
+  .nav-category{
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	margin-top: 0;
+	width:23%;
+	margin-left: 60px;
+  }
+  /*------logo---------- */
+  .search .f_flex {
+	justify-content: end;
+  }
+  .search {
+	padding: 20px 0;
+  }
+  .search .logo img {
+	width: auto;
+	height: auto;
+  }
+  .search .width {
+	width: 20%;
+  }
+  .cart {
+	position: relative;
+  }
+  .search .cart span {
+	position: absolute;
+	top: -10px;
+	right: 0px;
+	width: 20px;
+	height: 20px;
+	border-radius: 50%;
+	text-align: center;
+	background-color: #e94560;
+	font-size: 12px;
+	color: #fff;
+  }
+  .catgrories {
+	background-color: #aacb73;
+	color: #fff;
+	padding: 0px 20px;
+	border-radius: 5px;
+	height: 6vh;
+	width: 300px;
+	margin-top: 20px;
+	margin-left: -67px;
+  }
+  .catgrories span {
+	margin-right: 20px;
+
+	font-size: 30px;
+	margin-top: 10px;
+  }
+  .catgrories h4 {
+	font-weight: 500;
+	margin-top: 12px;
+  }
+  .catgrories h4 i {
+	margin-left: 10px;
+  }
+  
+  header ul {
+	line-height: 8vh;
+  }
+  header ul li {
+	margin-left: 30px;
+  }
+  header ul li a {
+	transition: 0.5s;
+	font-size: 15px;
+	font-weight: 400;
+  }
+  header ul li a:hover {
+	color: #AACB73;
+  }
+  .open {
+	display: none;
+  }
+  
+  @media (max-width: 768px) {
+	header ul {
+	  padding-top: 30px;
+	}
+	.nav-links-mobile {
+	  position: absolute;
+	  display: block;
+	  list-style: none;
+	  box-shadow: rgba(50, 50, 93, 0.23) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+	  left: 0;
+	  top: 0;
+	  transition: all 0.5s ease-in-out;
+	  width: 60%;
+	  height: 100vh;
+	  background-color: white;
+	  z-index: 888;
+	}
+	header ul li {
+	  width: 100%;
+	  transition: all 0.5s ease-in-out;
+	  text-transform: uppercase;
+	  line-height: 70px;
+	  justify-content: center;
+	  display: flex;
+	  font-size: 20px;
+	  font-weight: 500;
+	  align-items: center;
+	}
+	header .link {
+	  display: none;
+	}
+	.close,
+	.open {
+	  position: absolute;
+	  top: 35px;
+	  right: 20px;
+	  color: #fff;
+	  display: block;
+	  font-size: 25px;
+	  z-index: 999;
+	}
+	.open {
+	  display: block;
+	}
+	.close {
+	  right: 45%;
+	}
+	.close.home-btn {
+	  background: linear-gradient(145deg, #e2e8ec, #ffffff);
+	  color: rgb(199, 14, 14);
+	  border-radius: 50%;
+	  padding: 0;
+	  width: 60px;
+	  height: 60px;
+	  line-height: 60px;
+	}
+	.header.active {
+	  height: 10vh;
+	}
+  }
+  

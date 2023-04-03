@@ -9,8 +9,12 @@ const cors = require("cors");
 const sharp = require("sharp");
 const multer = require("multer");
 
+var path = require('path');
+
 db();
 const app = express();
+
+app.use(express.static(path.resolve('./public')));
 
 app.use(cors());
 app.use(function (req, res, next) {
@@ -25,9 +29,9 @@ app.use(function (req, res, next) {
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-app.use("/api/products", require("./Routes/productRoutes"));
-app.use("/api/users", require("./Routes/userRoutes"));
-app.use("/api/categories", require("./Routes/categoryRoutes"));
+app.use("/api/products", require("./Routes/product"));
+app.use("/api/users", require("./Routes/user"));
+app.use("/api/categories", require("./Routes/category"));
 
 const upload = multer({
   limits: {
@@ -41,20 +45,20 @@ const upload = multer({
   },
 });
 
-app.post("/upload", upload.single("image"), async (req, res) => {
-  try {
-    console.log(req.file);
-    const imageName = `${Date.now()}-${req.file.originalname}`;
-    await sharp(req.file.buffer)
-      .resize({ width: 250, height: 250 })
-      .png()
-      .toFile(__dirname + `./images/${imageName}`);
-    res.status(201).send("Image uploaded succesfully");
-  } catch (error) {
-    console.log(error);
-    res.status(400).send(error);
-  }
-});
+// app.post("/upload", upload.single("image"), async (req, res) => {
+//   try {
+//     console.log(req.file);
+//     const imageName = `${Date.now()}-${req.file.originalname}`;
+//     await sharp(req.file.buffer)
+//       .resize({ width: 250, height: 250 })
+//       .png()
+//       .toFile(__dirname + `./images/${imageName}`);
+//     res.status(201).send("Image uploaded succesfully");
+//   } catch (error) {
+//     console.log(error);
+//     res.status(400).send(error);
+//   }
+// });
 
 // const path = require("path");
 

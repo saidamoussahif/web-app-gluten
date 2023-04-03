@@ -10,6 +10,8 @@ const login = async (userData) => {
     localStorage.setItem("userToken", response.data.token);
     localStorage.setItem("fullname", response.data.fullname);
     localStorage.setItem("id", response.data._id);
+    localStorage.setItem("role", response.data.role);
+
     // console.log(localStorage.getItem("user"))
     console.log(response.data.token)
   }

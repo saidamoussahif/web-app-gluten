@@ -1,15 +1,16 @@
 const multer = require('multer');
+const path = require('path');
 
-const upload = multer({
-  limits: {
-    fileSize: 1000000
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, path.join(__dirname, '/../public/img/'));
   },
-  fileFilter(req, file, cb) {
-    if (!file.originalname.match(/.(jpg|jpeg|png|webp)$/)) {
-      return cb(new Error('Please upload a valid image file'))
-    }
-    cb(undefined, true)
+  filename: (req, file, cb) => {
+    cb(null, `${Date.now()}-${file.originalname}`);
   }
-})
+});
+
+const upload = multer({ storage });
 
 module.exports = upload;
+

@@ -14,7 +14,7 @@ const DisplayProducts = (props) => {
   const [product, setProduct] = useState("");
   const getProducts = async () => {
     const response = await fetch(
-      "http://192.168.9.33:9090/api/products/getAll"
+      "http://172.16.100.96:9090/api/products/getAll"
     );
     const data = await response.json();
     setProduct(data);
@@ -24,6 +24,58 @@ const DisplayProducts = (props) => {
   });
 
   return (
+    // <View style={styles.productContainer}>
+    //   <FlatList
+    //     data={product}
+    //     renderItem={({ item }) => (
+    //       <View style={styles.Card}>
+    //         <View>
+    //           <View>
+    //           <Feather name="heart"
+    //               size={25}
+    //               color="black"
+    //               style={{
+    //                 position: "absolute",
+    //                 top: 0,
+    //                 right: 5,
+    //                 padding: 4,
+    //                 marginBottom: 10,
+    //               }}
+    //               onPress={() => navigation.navigate("wishList")}
+    //             />
+    //           <AntDesign name="pluscircle" size={30} color="#9DC08B"
+    //           // onPress={
+    //           //   () => navigation.navigate("MyCart")
+    //           // }
+    //           />
+    //           </View>
+    //           <Image
+    //             style={{
+    //               width: 200,
+    //               height: 200,
+    //               alignSelf: "center",
+    //               borderRadius: 10,
+    //               marginTop: 20,
+    //             }}
+    //               source={`http://172.16.100.96:9090/public/img/${item.image}`}
+    //           />
+    //         </View>
+    //         <View style={styles.productInfo}>
+    //           <Text>{item.productName}</Text>
+    //         </View>
+    //         <View>
+    //           <Text>{item.quantity}</Text>
+    //           <Text>{item.price}</Text>
+    //         </View>
+    //         <View>
+    //           <Text>{item.description}</Text>
+    //         </View>
+    //       </View>
+    //     )}
+    //     numColumns={1}
+    //   />
+    // </View>
+
     <View style={styles.productContainer}>
       <FlatList
         data={product}
@@ -31,7 +83,8 @@ const DisplayProducts = (props) => {
           <View style={styles.Card}>
             <View>
               <View>
-              <Feather name="heart"
+                <Feather
+                  name="heart"
                   size={25}
                   color="black"
                   style={{
@@ -43,11 +96,14 @@ const DisplayProducts = (props) => {
                   }}
                   onPress={() => navigation.navigate("wishList")}
                 />
-              <AntDesign name="pluscircle" size={30} color="#9DC08B"
-              // onPress={
-              //   () => navigation.navigate("MyCart")
-              // }
-              />
+                <AntDesign
+                  name="pluscircle"
+                  size={30}
+                  color="#9DC08B"
+                  // onPress={
+                  //   () => navigation.navigate("MyCart")
+                  // }
+                />
               </View>
               <Image
                 style={{
@@ -57,7 +113,7 @@ const DisplayProducts = (props) => {
                   borderRadius: 10,
                   marginTop: 20,
                 }}
-                source={require("../../assets/leaves.jpg")}
+                source={item.image}
               />
             </View>
             <View style={styles.productInfo}>
@@ -76,6 +132,8 @@ const DisplayProducts = (props) => {
       />
     </View>
   );
+  
+                  
 };
 
 export default DisplayProducts;
