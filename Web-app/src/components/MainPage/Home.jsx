@@ -4,6 +4,7 @@ import Slider from "./Slider";
 import "./Home.css";
 import ServiceCard from "./ServiceCard";
 import CategoryCard from "./CategoryCard";
+import MobileSection from "../Footer/Footer";
 
 function Home() {
   return (
@@ -15,6 +16,7 @@ function Home() {
         </div>
         <ServiceCard />
         <CategoryCard />
+        <MobileSection/>
       </section>
     </>
   );

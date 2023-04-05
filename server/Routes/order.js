@@ -8,7 +8,7 @@ const {
 const router = express.Router();
 
 // add to cart
-router.post("/", addToCart);
+router.post("/addToCart", addToCart);
 
 // get cart
 router.get("/", getCart);

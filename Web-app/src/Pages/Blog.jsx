@@ -1,4 +1,5 @@
 import React from "react";
+import Footer from "../components/Footer/Footer";
 import Header from "../components/Headers/Header";
 
 const Blog = () => {
@@ -248,6 +249,7 @@ const Blog = () => {
           </div>
         </div>
       </section>
+      <Footer/>
     </>
   );
 };

@@ -6,8 +6,8 @@ const mongoose = require("mongoose");
 mongoose.set("strictQuery", false);
 
 const cors = require("cors");
-const sharp = require("sharp");
-const multer = require("multer");
+// const sharp = require("sharp");
+// const multer = require("multer");
 
 var path = require('path');
 
@@ -32,18 +32,20 @@ app.use(express.urlencoded({ extended: false }));
 app.use("/api/products", require("./Routes/product"));
 app.use("/api/users", require("./Routes/user"));
 app.use("/api/categories", require("./Routes/category"));
+app.use("/api/orders", require("./Routes/order"));
+app.use("/api/carts", require("./Routes/cart"));
 
-const upload = multer({
-  limits: {
-    fileSize: 1000000,
-  },
-  fileFilter(req, file, cb) {
-    if (!file.originalname.match(/.(jpg|jpeg|png)$/)) {
-      return cb(new Error("Please upload a valid image file"));
-    }
-    cb(undefined, true);
-  },
-});
+// const upload = multer({
+//   limits: {
+//     fileSize: 1000000,
+//   },
+//   fileFilter(req, file, cb) {
+//     if (!file.originalname.match(/.(jpg|jpeg|png)$/)) {
+//       return cb(new Error("Please upload a valid image file"));
+//     }
+//     cb(undefined, true);
+//   },
+// });
 
 // app.post("/upload", upload.single("image"), async (req, res) => {
 //   try {

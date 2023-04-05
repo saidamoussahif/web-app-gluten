@@ -23,16 +23,8 @@ const Navbar = () => {
               <li>
                 <Link to="/">Home</Link>
               </li>
-              {/* dropdown link */}
               <li>
-                <select>
-                  <option>
-                    <Link to="/blog">Blog</Link>
-                  </option>
-                  <option>
-                    <Link to="/blog">Articles</Link>
-                  </option>
-                </select>
+                <Link to="/blog">Blog</Link>
               </li>
               <li>
                 <Link to="/about">Our Story</Link>

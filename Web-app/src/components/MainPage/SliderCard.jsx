@@ -20,7 +20,6 @@ function SliderCard() {
   const getProducts = async () => {
     const response = await fetch(
       "http://localhost:9090/api/products/getAll"
-      // "http://172.19.32.1:9090/api/products/getAll"
     );
     const data = await response.json();
     setProduct(data);

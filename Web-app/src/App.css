@@ -24,6 +24,10 @@ body {
   display: flex;
   justify-content: space-between;
 }
+.d_flex a{
+  margin: 15px 20px;
+  text-transform: capitalize;
+}
 .c_flex {
   display: flex;
   justify-content: space-between;

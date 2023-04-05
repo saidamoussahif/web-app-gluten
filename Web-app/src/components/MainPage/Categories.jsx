@@ -18,9 +18,16 @@ function Categories() {
     <>
       <div className="catgrories d_flex">
         <span class="fa-solid fa-border-all"></span>
-        <h4>Categories</h4>
+        <a className="justify-center items-center top-3" href="/">
+          All Products
+        </a>
       </div>
       <div className="category">
+        <div className="f_flex">
+          <a className="font-bold" href="/">
+            Categories
+          </a>
+        </div>
         {category.map((value, index) => {
           return (
             <div className="box f_flex" key={index}>
