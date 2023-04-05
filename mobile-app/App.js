@@ -11,7 +11,7 @@ import ProductsScreen from "./src/screens/ProductsScreen";
 import WelcomeScreen from "./src/screens/WelcomeScreen";
 import ProfileScreen from "./src/screens/ProfileScreen";
 // import WishListScreen from "./src/screens/WishListScreen";
-import MyCartScreen from "./src/screens/MyCartScreen";
+// import MyCartScreen from "./src/screens/MyCartScreen";
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -57,15 +57,14 @@ export default function App() {
             <Stack.Screen name="Welcome" component={WelcomeScreen} />
             <Stack.Screen name="Products" component={ProductsScreen} />
             <Stack.Screen name="Profile" component={ProfileScreen} />
-            <Stack.Screen name="MyCart" component={MyCartScreen} />
+            {/* <Stack.Screen name="MyCart" component={MyCartScreen} /> */}
           </>
         ) : (
+          <>
           <Stack.Screen name="Login" component={LoginScreen} />
+          <Stack.Screen name="/category/:category" component={CategoryProdcuctScreen} />
+          </>
         )}
-
-        {/* <Stack.Screen name="wishList" component={WishListScreen} /> */}
-        {/* <Stack.Screen name="Login" component={LoginScreen} /> */}
-        {/* <Stack.Screen name="Register" component={RegisterScreen} /> */}
       </Tab.Navigator>
     </NavigationContainer>
   );

@@ -11,6 +11,7 @@ import Users from "./Pages/admin/Users";
 import "./App.css";
 import CartProduct from "./Pages/CartProduct";
 import FilterProduct from "./Pages/FilterProduct";
+import AllProduct from "./Pages/AllProduct";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
         <Route path="/orders" element={<Orders />} />
         <Route path="/users" element={<Users />} />
         <Route path="/category/:category" element={<FilterProduct/>} />
+        <Route path="/getAll" element={<AllProduct/>} />
         <Route path="*" element={<ErrorPage />} />
       </Routes>
     </>

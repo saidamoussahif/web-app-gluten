@@ -25,9 +25,7 @@ const getProductById = async (req, res) => {
   res.status(200).json(product);
 };
 
-
-// route product / post
-
+// product
 const addProduct = async (req, res) => {
   const { category, productName, quantity, price, description , image } = req.body;
   // const { file } = req;
@@ -100,10 +98,6 @@ const deleteProduct = async (req, res) => {
     }
   });
 };
-
-
-
-
 
 
 module.exports = {

@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Image, Box } from "react-native";
+import { StyleSheet, Text, View, Image, Box, Button } from "react-native";
 import React from "react";
 import { FlatList } from "react-native-gesture-handler";
 import Colors from "../Constants/Colors";
@@ -7,11 +7,14 @@ const width = Dimensions.get("screen").width / 1 - 50;
 import { useEffect, useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { Feather, AntDesign } from "@expo/vector-icons";
-
+import { Alert } from "react-native";
+import Btn from '../Components/Button'
 
 const DisplayProducts = (props) => {
   const navigation = useNavigation();
   const [product, setProduct] = useState("");
+  const [token, setToken] = useState("");
+
   const getProducts = async () => {
     const response = await fetch(
       "http://172.16.100.96:9090/api/products/getAll"
@@ -22,6 +25,21 @@ const DisplayProducts = (props) => {
   useEffect(() => {
     getProducts();
   });
+
+  // add to cart
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    if (!token) {
+      navigate("/login");
+      Alert.alert("Please Login to add product to cart!");
+    }else{
+      const response = await fetch(
+        "http://172.16.100.96:9090/api/products/addToCart"
+      );
+      const data = await response.json();
+      setProduct(data);
+    }
+  };
 
   return (
     // <View style={styles.productContainer}>
@@ -100,9 +118,7 @@ const DisplayProducts = (props) => {
                   name="pluscircle"
                   size={30}
                   color="#9DC08B"
-                  // onPress={
-                  //   () => navigation.navigate("MyCart")
-                  // }
+                  onPress={onSubmit}
                 />
               </View>
               <Image
@@ -113,7 +129,7 @@ const DisplayProducts = (props) => {
                   borderRadius: 10,
                   marginTop: 20,
                 }}
-                source={item.image}
+                source={{ uri: `http://172.16.100.96:9090/img/${item.image}` }}
               />
             </View>
             <View style={styles.productInfo}>
@@ -132,8 +148,6 @@ const DisplayProducts = (props) => {
       />
     </View>
   );
-  
-                  
 };
 
 export default DisplayProducts;

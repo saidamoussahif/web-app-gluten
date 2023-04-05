@@ -1,7 +1,6 @@
 const Order = require('../Models/order')
 
 // create order
-
 const createOrder = async (req, res) =>{
 	const newOrder = new Order(req.body);
 	try {
@@ -13,7 +12,6 @@ const createOrder = async (req, res) =>{
 }
 
 // get order
-
 const getOrder = async (req, res) => {
 	try {
 		const order = await Order.find();
@@ -24,7 +22,6 @@ const getOrder = async (req, res) => {
 }
 
 // get order by id
-
 const getOrderById = async (req, res) => {
 	try {
 		const order = await Order.findById(req.params.id);
@@ -35,7 +32,6 @@ const getOrderById = async (req, res) => {
 }
 
 // delete order
-
 const deleteOrder = async (req, res) => {
 	try {
 		const order = await Order.findById(req.params.id);

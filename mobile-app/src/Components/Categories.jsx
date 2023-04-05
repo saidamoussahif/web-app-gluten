@@ -12,13 +12,11 @@ const Categories = () => {
 	const [category, setCategory] = useState("");
   const getCategories = async () => {
     const response = await fetch(
-      "http://192.168.9.33:9090/api/categories/getAll"
+      "http://172.16.100.96:9090/api/categories/getAll"
     );
     const data = await response.json();
     setCategory(data);
   };
-  
-
 
   useEffect(() => {
     getCategories();
