@@ -24,14 +24,39 @@ function LoginScreen(props) {
   const [password, setPassword] = useState("");
 
   const login = () => {
-    axios
-      .post("http://192.168.9.33:9090/api/users/login", {
+    // axios
+    //   .post("http://192.168.9.33:9090/api/users/login", {
+    //     email: email,
+    //     password: password, 
+    //   })
+    //   .then((response) => {
+    //     if (response.data.token) {
+    //       AsyncStorage.setItem("token", response.data.token);
+    //       Alert.alert("Login Successful");
+    //       props.navigation.navigate("Products");
+    //     }
+    //   })
+    //   .catch((error) => {
+    //     console.log(error);
+    //   });
+
+    // login with fetch not axios
+
+    fetch("http://192.168.9.33:9090/api/users/login"
+    , {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
         email: email,
-        password: password, 
-      })
-      .then((response) => {
-        if (response.data.token) {
-          AsyncStorage.setItem("token", response.data.token);
+        password: password,
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.token) {
+          AsyncStorage.setItem("token", data.token);
           Alert.alert("Login Successful");
           props.navigation.navigate("Products");
         }
@@ -40,8 +65,6 @@ function LoginScreen(props) {
         console.log(error);
       });
   };
-
-
 
 
   return (

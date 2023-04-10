@@ -9,8 +9,22 @@ import {
 } from "@expo/vector-icons";
 import Products from "../Components/Products";
 import Categories from "../Components/Categories";
+// import {AsyncStorage} from "rea"
 
 function HomeScreen() {
+  // const [token, setToken] = useState("");
+
+// logout
+  const logout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    window.location.href = "/";
+  };
+
+  useEffect(() => {
+   
+  }, []);
+
   return (
     <SafeAreaView
       style={{
@@ -35,8 +49,9 @@ function HomeScreen() {
             justifyContent: "center",
           }}
         >
-          <FontAwesome name="sign-out" size={24} color={Colors.green} />
-         
+          <FontAwesome name="sign-out" size={24} color={Colors.green}
+          onPress={logout}
+           />
         </View>
       </View>
       <View style={{ marginTop: 30, flexDirection: "row" }}>

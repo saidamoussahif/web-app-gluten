@@ -12,7 +12,7 @@ const createOrder = async (req, res) =>{
 }
 
 // get order
-const getOrder = async (req, res) => {
+const getOrders = async (req, res) => {
 	try {
 		const order = await Order.find();
 		res.status(200).json(order);
@@ -31,24 +31,9 @@ const getOrderById = async (req, res) => {
 	}
 }
 
-// delete order
-const deleteOrder = async (req, res) => {
-	try {
-		const order = await Order.findById(req.params.id);
-		try {
-			await order.deleteOne();
-			res.status(200).json("Order has been deleted...");
-		} catch (err) {
-			res.status(500).json(err);
-		}
-	} catch (err) {
-		res.status(500).json(err);
-	}
-}
 
 module.exports = {
 	createOrder,
-	getOrder,
+	getOrders,
 	getOrderById,
-	deleteOrder,
 }

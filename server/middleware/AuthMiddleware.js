@@ -1,6 +1,6 @@
 const jwt = require("jsonwebtoken");
 const asyncHandler = require("express-async-handler");
-const User = require("../users/userSchema");
+const User = require("../Models/user");
 
 const verifyToken = asyncHandler(async (req, res, next) => {
   let token;
@@ -30,6 +30,22 @@ const verifyToken = asyncHandler(async (req, res, next) => {
   }
 });
 
+// check if the user is an admin
+const isAdmin = asyncHandler(async (req, res, next) => {
+  if (req.user && req.user.role === "admin") {
+    next();
+  }
+  if (!req.user) {
+    res.status(401);
+    throw new Error("Not authorized, no token");
+  }
+
+  if (req.user && req.user.role !== "admin") {
+    res.status(401);
+    throw new Error("Not authorized, not an admin");
+  }
+});
 
 
-module.exports = { verifyToken };
+
+module.exports = { verifyToken, isAdmin };

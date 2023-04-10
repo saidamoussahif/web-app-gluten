@@ -6,12 +6,8 @@ import React from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import LoginScreen from "./src/screens/LoginScreen";
-// import RegisterScreen from './src/screens/RegisterScreen';
 import ProductsScreen from "./src/screens/ProductsScreen";
 import WelcomeScreen from "./src/screens/WelcomeScreen";
-import ProfileScreen from "./src/screens/ProfileScreen";
-// import WishListScreen from "./src/screens/WishListScreen";
-// import MyCartScreen from "./src/screens/MyCartScreen";
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -42,7 +38,7 @@ export default function App() {
               iconName = focused ? "home" : "home-outline";
             } else if (route.name === "Products") {
               iconName = focused ? "ios-grid-outline" : "ios-grid-outline";
-            } else if (route.name === "Profile") {
+            } else if (route.name === "Login") {
               iconName = focused ? "person-outline" : "person-outline";
             }
             // You can return any component that you like here!
@@ -56,13 +52,12 @@ export default function App() {
           <>
             <Stack.Screen name="Welcome" component={WelcomeScreen} />
             <Stack.Screen name="Products" component={ProductsScreen} />
-            <Stack.Screen name="Profile" component={ProfileScreen} />
-            {/* <Stack.Screen name="MyCart" component={MyCartScreen} /> */}
+            <Stack.Screen name="Login" component={LoginScreen} />
           </>
         ) : (
           <>
+          <Stack.Screen name="CategoryProdcuct" component={CategoryProdcuctScreen} />
           <Stack.Screen name="Login" component={LoginScreen} />
-          <Stack.Screen name="/category/:category" component={CategoryProdcuctScreen} />
           </>
         )}
       </Tab.Navigator>

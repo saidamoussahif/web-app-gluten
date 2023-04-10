@@ -2,8 +2,8 @@ import { useState, React, useEffect } from "react";
 import "./style.css";
 import axios from "axios";
 
-function AddProduct() {
-  const [showModalEdit, setShowModalEdit] = useState(false);
+function Products() {
+  // const [showModalEdit, setShowModalEdit] = useState(false);
   const [productsList, setProducts] = useState([]);
 
   useEffect(() => {
@@ -30,7 +30,7 @@ function AddProduct() {
   return (
     <>
  
-      <div className=" absolute top-1/3 left-1/4 w-1/2 rounded-lg border border-gray-200 shadow-md m-5">
+      <div className="absolute top-[20%] left-1/4 w-1/2 rounded-lg border border-gray-200 shadow-md m-5">
         <table className="w-full bg-white text-left text-sm text-gray-500">
           <thead className="bg-gray-50">
             <tr>
@@ -113,7 +113,7 @@ function AddProduct() {
                     <button
                       x-data="{ tooltip: 'Edite' }"
                       className="text-blue-500 hover:text-blue-600"
-                      onClick={() => setShowModalEdit(true)}
+                      // onClick={() => setShowModalEdit(true)}
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -143,4 +143,4 @@ function AddProduct() {
   );
 }
 
-export default AddProduct;
+export default Products;

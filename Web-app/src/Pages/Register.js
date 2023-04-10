@@ -36,7 +36,7 @@ const Register = () => {
 
   return (
     <>
-      <div className="h-full w-1/3 absolute top-1/3 left-1/3">
+      <div className="h-full w-1/3 absolute top-[15%] left-1/3">
         <div className="relative py-3 max-w-3xl">
           <div className="absolute inset-0 bg-gradient-to-r from-[#739044] to-[#AACB73] shadow-lg transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 sm:rounded-3xl"></div>
           <div className="relative px-4 py-8 bg-white shadow-lg sm:rounded-3xl sm:p-20">
@@ -80,8 +80,8 @@ const Register = () => {
                     </label>
                   </div>
                   <div className="relative top-8">
-                    <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
-                      <svg
+                    <div className="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-700">
+                      {/* <svg
                         xmlns="http://www.w3.org/2000/svg"
                         className="h-5 w-5 text-gray-400"
                         fill="none"
@@ -98,7 +98,8 @@ const Register = () => {
                           strokeLinecap="round"
                           strokeLinejoin="round"
                         ></path>
-                      </svg>
+                      </svg> */}
+                      <ion-icon name="call-outline"></ion-icon>
                     </div>
                     <input
                       autoComplete="off"

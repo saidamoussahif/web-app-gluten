@@ -8,7 +8,6 @@ import { useEffect, useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { Feather, AntDesign } from "@expo/vector-icons";
 import { Alert } from "react-native";
-import Btn from '../Components/Button'
 
 const DisplayProducts = (props) => {
   const navigation = useNavigation();

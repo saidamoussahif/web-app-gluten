@@ -1,5 +1,5 @@
 import React from "react";
-import Header from "../../components/admin/AdminHead";
+import AdminHead from "../../components/admin/AdminHead";
 // import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
@@ -18,7 +18,8 @@ function Users() {
   }, []);
   return (
     <>
-      <Header />
+      <div className="flex">
+      <AdminHead />
       <div className=" absolute top-1/4 left-1/4 w-1/2 rounded-lg border border-gray-200 shadow-md m-5">
         <table className="w-full border-collapse bg-white text-left text-sm text-gray-500">
           <thead className="bg-gray-100 bg-transparent">
@@ -65,6 +66,7 @@ function Users() {
           </tbody>
         </table>
       </div>
+    </div>
     </>
   );
 }

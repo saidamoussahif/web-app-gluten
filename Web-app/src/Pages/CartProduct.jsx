@@ -5,22 +5,26 @@ import axios from "axios";
 const CartProduct = () => {
  
   // get product by id
-  const [cartProduct, setCartProduct] = useState([]);
-  useEffect(() => {
-    const option = {
-      method: "GET",
-      url: `http://localhost:9090/api/products/getProductById/1`,
-    };
-    axios(option)
-      .then((res) => {
-        console.log(res.data);
-        setCartProduct(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
+  // const [cartProduct, setCartProduct] = useState([]);
+  // useEffect(() => {
+  //   const option = {
+  //     method: "GET",
+  //     url: `http://localhost:9090/api/products/getProductById/1`,
+  //   };
+  //   axios(option)
+  //     .then((res) => {
+  //       console.log(res.data);
+  //       setCartProduct(res.data);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // }, []);
   
+  //  get cart product from localstorage
+
+
+
   return (
     <>
       <Header />
@@ -31,9 +35,9 @@ const CartProduct = () => {
               <div className="flex justify-between border-b pb-8">
                 <h1 className="font-semibold text-2xl">Shopping Cart</h1>
               </div>
-              {
+            {/* {
                 cartProduct.map((product)=>{
-                  return(
+                  return( 
                     <div className="flex mt-10 mb-5">
                       <div className="flex w-2/5">
                         <div className="w-20">
@@ -75,7 +79,7 @@ const CartProduct = () => {
                     </div>
                   )
                 })
-              }
+              }   */}
               {/* <div className="flex mt-10 mb-5">
                 <h3 className="font-semibold text-gray-600 text-xs uppercase w-2/5">
                   Product Details

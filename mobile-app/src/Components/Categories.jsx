@@ -5,11 +5,14 @@ import Colors from '../Constants/Colors'
 import { Dimensions } from 'react-native'
 const width = Dimensions.get("screen").width/2-30;
 import  { useEffect, useState } from "react";
+import { useNavigation } from "@react-navigation/native";
 
 
 
 const Categories = () => {
 	const [category, setCategory] = useState("");
+	const navigation = useNavigation();
+
   const getCategories = async () => {
     const response = await fetch(
       "http://172.16.100.96:9090/api/categories/getAll"
@@ -29,14 +32,19 @@ const Categories = () => {
         data={category}
         renderItem={({ item }) => (
           <View style={styles.categoryText}>
-            <Text>{item.name}</Text>
+            <Text
+			  onPress={
+				() => {
+					navigation.navigate("/category")
+			  }
+			}
+			>{item.name}</Text>
           </View>
         )}
       />
 	</View>
   )
 }
-
 export default Categories
 
 const styles = StyleSheet.create({

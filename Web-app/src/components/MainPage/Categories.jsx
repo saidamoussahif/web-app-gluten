@@ -17,7 +17,7 @@ function Categories() {
     <>
       <div className="catgrories d_flex">
         <span class="fa-solid fa-border-all"></span>
-        <a className="justify-center items-center top-3" href={`/getAll`}>
+        <a className="justify-center items-center" href={`/getAll`}>
           All Products
         </a>
       </div>

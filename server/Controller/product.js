@@ -85,9 +85,6 @@ const updateProduct = async (req, res) => {
   }
 };
 
-
-
-
 // delete product
 const deleteProduct = async (req, res) => {
   Product.findByIdAndDelete(req.params.id, (err) => {
